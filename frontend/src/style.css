@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600;1,6..72,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Editorial Color Palette */
+  --bg-deep: #060814;
+  --bg-section-1: #070a18;
+  --bg-section-2: #0d0a1c;
+  --bg-section-3: #080d20;
+  --bg-section-4: #0a0c16;
+
+  --gold: #e5b22e;
+  --gold-warm: #d99e2b;
+  --gold-subtle: rgba(229, 178, 46, 0.15);
+  --gold-glow: rgba(229, 178, 46, 0.25);
+
+  --text-main: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-dim: #64748b;
+
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-medium: rgba(255, 255, 255, 0.14);
+
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-mono: 'Space Grotesk', monospace, sans-serif;
+
+  --header-height: 80px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Editorial Typography Mix Utilities */
+.serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.serif-italic-gold {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.editorial-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* Editorial Section Spacing */
+.editorial-section {
+  padding: 130px 0;
+  position: relative;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* Subtle Mathematical Curves Background Animation */
+.math-curves-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  opacity: 0.45;
+}
+
+.math-curves-svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+@keyframes waveSlow {
+  0% { transform: translateY(0) scaleY(1); }
+  50% { transform: translateY(-18px) scaleY(1.04); }
+  100% { transform: translateY(0) scaleY(1); }
+}
+
+@keyframes waveSlow2 {
+  0% { transform: translateY(0) scaleX(1); }
+  50% { transform: translateY(22px) scaleX(1.05); }
+  100% { transform: translateY(0) scaleX(1); }
+}
+
+.animated-wave-1 {
+  animation: waveSlow 18s ease-in-out infinite;
+}
+
+.animated-wave-2 {
+  animation: waveSlow2 24s ease-in-out infinite reverse;
+}
+
+/* Italic Word Reveal */
+@keyframes italicReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.reveal-italic {
+  display: inline-block;
+  animation: italicReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Pill & Form Button styles */
+.btn-editorial-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #070913;
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-editorial-pill:hover {
+  background: #ffd053;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(229, 178, 46, 0.3);
+}
+
+.btn-editorial-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-medium);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-editorial-outline:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+/* Editorial Tag */
+.editorial-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
