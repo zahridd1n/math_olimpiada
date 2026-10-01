@@ -66,16 +66,16 @@ class Participant(models.Model):
         validators=[phone_validator],
         verbose_name="Telefon raqami"
     )
-    birth_date = models.DateField(verbose_name="Tug'ilgan sana")
-    school = models.CharField(max_length=255, verbose_name="Maktab nomi")
-    region = models.CharField(max_length=100, verbose_name="Viloyat")
-    district = models.CharField(max_length=100, verbose_name="Tuman/shahar")
+    birth_date = models.DateField(null=True, blank=True, verbose_name="Tug'ilgan sana")
+    school = models.CharField(max_length=255, blank=True, default="", verbose_name="Maktab nomi")
+    region = models.CharField(max_length=100, blank=True, default="", verbose_name="Viloyat")
+    district = models.CharField(max_length=100, blank=True, default="", verbose_name="Tuman/shahar")
     class_number = models.PositiveSmallIntegerField(
         choices=CLASS_CHOICES,
         verbose_name="Sinf"
     )
     teacher_name = models.CharField(
-        max_length=255, blank=True, verbose_name="O'qituvchi F.I.Sh."
+        max_length=255, blank=True, default="", verbose_name="O'qituvchi F.I.Sh."
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Ro'yxatdan o'tgan vaqti")
     updated_at = models.DateTimeField(auto_now=True)

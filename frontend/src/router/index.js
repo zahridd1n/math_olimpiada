@@ -14,6 +14,11 @@ const router = createRouter({
       name: 'register',
       component: () => import('../views/RegisterView.vue'),
     },
+    {
+      path: '/qabullar',
+      name: 'applications',
+      component: () => import('../views/ApplicationsView.vue'),
+    },
   ],
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {

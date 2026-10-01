@@ -2,7 +2,9 @@
  * API service layer.
  * All backend communication goes through here.
  */
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const API_URL = import.meta.env.VITE_API_URL !== undefined 
+  ? import.meta.env.VITE_API_URL 
+  : (import.meta.env.DEV ? 'http://localhost:8000' : '')
 
 /**
  * Register a new participant.
@@ -96,5 +98,49 @@ export async function getSiteSettings() {
     return null
   }
 }
+
+/**
+ * Fetch list of registered applications/participants with filters.
+ */
+export async function getApplications(params = {}) {
+  try {
+    const query = new URLSearchParams()
+    if (params.search) query.append('search', params.search)
+    if (params.class_number) query.append('class_number', params.class_number)
+
+    const url = `${API_URL}/api/v1/applications/?${query.toString()}`
+    const response = await fetch(url)
+    if (!response.ok) throw new Error("Ma'lumotlarni yuklab bo'lmadi")
+    return await response.json()
+  } catch (err) {
+    console.error(err)
+    return { stats: { total: 0, class_5: 0, class_6: 0, class_7: 0, class_8: 0 }, count: 0, results: [] }
+  }
+}
+
+/**
+ * Delete an application by ID.
+ */
+export async function deleteApplication(id) {
+  try {
+    const response = await fetch(`${API_URL}/api/v1/participants/${id}/`, {
+      method: 'DELETE',
+    })
+    return response.ok
+  } catch {
+    return false
+  }
+}
+
+/**
+ * Get the direct download URL for Excel export.
+ */
+export function getExportApplicationsUrl(params = {}) {
+  const query = new URLSearchParams()
+  if (params.search) query.append('search', params.search)
+  if (params.class_number) query.append('class_number', params.class_number)
+  return `${API_URL}/api/v1/applications/export/?${query.toString()}`
+}
+
 
 

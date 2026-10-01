@@ -27,6 +27,13 @@ class ParticipantSerializer(serializers.ModelSerializer):
             'created_at',
         ]
         read_only_fields = ['id', 'created_at']
+        extra_kwargs = {
+            'birth_date': {'required': False, 'allow_null': True},
+            'school': {'required': False, 'allow_blank': True},
+            'region': {'required': False, 'allow_blank': True},
+            'district': {'required': False, 'allow_blank': True},
+            'teacher_name': {'required': False, 'allow_blank': True},
+        }
 
     def validate_phone(self, value):
         """Normalize phone to +998XXXXXXXXX format."""
