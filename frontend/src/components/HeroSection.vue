@@ -31,25 +31,16 @@
             shaffof, nufuzli bellashuv. Quruq formulalar emas — intellektual salohiyat, tahliliy tafakkur va ta'lim grantlari.
           </p>
 
-          <!-- Modern Form-style / Editorial CTA -->
-          <div class="editorial-cta-wrap">
-            <div class="quick-reg-box">
-              <input 
-                type="tel" 
-                v-model="quickPhone" 
-                placeholder="+998 (__) ___-__-__" 
-                class="quick-input"
-                @keyup.enter="handleQuickSubmit"
-              />
-              <button @click="handleQuickSubmit" class="btn-editorial-pill">
-                <span>Ro'yxatdan o'tish</span>
-                <span class="arrow-glyph">→</span>
-              </button>
-            </div>
-            
-            <div class="cta-alt-note">
-              yoki <router-link to="/register" class="link-underlined">batafsil ro'yxatdan o'tish shaklini</router-link> to'ldiring
-            </div>
+          <!-- Hero Action Buttons -->
+          <div class="hero-actions-wrap">
+            <router-link to="/register" class="btn-editorial-pill hero-cta-btn">
+              <span>Ro'yxatdan o'tish</span>
+              <span class="arrow-glyph">→</span>
+            </router-link>
+
+            <a href="#about" class="btn-secondary-hero">
+              <span>Batafsil ma'lumot</span>
+            </a>
           </div>
         </div>
 
@@ -94,12 +85,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 import { getSiteSettings } from '../services/api.js'
 import defaultHero from '../assets/hero-students.jpg'
 
-const router = useRouter()
-const quickPhone = ref('')
 const heroImg = ref('')
 
 onMounted(async () => {
@@ -108,14 +96,6 @@ onMounted(async () => {
     heroImg.value = settings.hero_image_url
   }
 })
-
-function handleQuickSubmit() {
-  if (quickPhone.value.trim()) {
-    router.push({ path: '/register', query: { phone: quickPhone.value.trim() } })
-  } else {
-    router.push('/register')
-  }
-}
 </script>
 
 <style scoped>
@@ -173,45 +153,19 @@ function handleQuickSubmit() {
   font-weight: 400;
 }
 
-/* Form-style Quick CTA */
-.editorial-cta-wrap {
+/* Hero Action Buttons */
+.hero-actions-wrap {
   display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.quick-reg-box {
-  display: inline-flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-medium);
-  border-radius: 999px;
-  padding: 5px 6px 5px 22px;
-  max-width: 440px;
-  transition: all 0.25s ease;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-.quick-reg-box:focus-within {
-  border-color: var(--gold);
-  background: rgba(255, 255, 255, 0.07);
-  box-shadow: 0 0 20px rgba(229, 178, 46, 0.15);
-}
-
-.quick-input {
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  outline: none;
-  flex: 1;
-  width: 100%;
-}
-
-.quick-input::placeholder {
-  color: var(--text-dim);
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
+.hero-cta-btn {
+  height: 52px;
+  padding: 0 32px;
+  font-size: 1rem;
+  box-shadow: 0 6px 25px rgba(229, 178, 46, 0.3);
 }
 
 .arrow-glyph {
@@ -224,20 +178,28 @@ function handleQuickSubmit() {
   transform: translateX(4px);
 }
 
-.cta-alt-note {
-  font-size: 0.85rem;
-  color: var(--text-dim);
+.btn-secondary-hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 0 26px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-medium);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
 }
 
-.link-underlined {
-  color: var(--text-secondary);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  transition: color 0.2s ease;
-}
-
-.link-underlined:hover {
+.btn-secondary-hero:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--border-light);
   color: var(--gold);
+  transform: translateY(-1px);
 }
 
 /* Media Block */
