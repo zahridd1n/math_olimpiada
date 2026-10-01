@@ -42,7 +42,7 @@
                 @keyup.enter="handleQuickSubmit"
               />
               <button @click="handleQuickSubmit" class="btn-editorial-pill">
-                <span>Ariza qoldirish</span>
+                <span>Ro'yxatdan o'tish</span>
                 <span class="arrow-glyph">→</span>
               </button>
             </div>

@@ -113,8 +113,13 @@ def delete_participant(request, pk):
 def export_participants_excel(request):
     """
     GET /api/v1/applications/export/
-    Export participants list to Excel-ready CSV with UTF-8 BOM.
+    Export participants list to a styled Excel (.xlsx) file.
     """
+    import io
+    import openpyxl
+    from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+    from openpyxl.utils import get_column_letter
+
     queryset = Participant.objects.all().order_by('-created_at')
 
     search = request.GET.get('search', '').strip()
@@ -128,21 +133,78 @@ def export_participants_excel(request):
     if class_number and class_number.isdigit():
         queryset = queryset.filter(class_number=int(class_number))
 
-    response = HttpResponse(content_type='text/csv; charset=utf-8')
-    response['Content-Disposition'] = 'attachment; filename="qabullar_olimpiada.csv"'
-    response.write('\ufeff')  # BOM for UTF-8 in Excel
-    writer = csv.writer(response)
-    writer.writerow(['ID', 'F.I.SH.', 'Telefon', 'Sinf', 'Ro\'yxatdan o\'tgan vaqti'])
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "Qabullar"
 
-    for p in queryset:
-        writer.writerow([
+    # Header styling
+    header_fill = PatternFill(start_color="1A2035", end_color="1A2035", fill_type="solid")
+    header_font = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
+    header_alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+
+    thin_border = Border(
+        left=Side(style='thin', color='D3D3D3'),
+        right=Side(style='thin', color='D3D3D3'),
+        top=Side(style='thin', color='D3D3D3'),
+        bottom=Side(style='thin', color='D3D3D3')
+    )
+
+    headers = ['№ ID', 'F.I.SH. (O\'quvchi)', 'Telefon raqami', 'Sinfi', 'Ro\'yxatdan o\'tgan vaqti']
+    ws.append(headers)
+    ws.row_dimensions[1].height = 26
+
+    for col_idx in range(1, len(headers) + 1):
+        cell = ws.cell(row=1, column=col_idx)
+        cell.fill = header_fill
+        cell.font = header_font
+        cell.alignment = header_alignment
+        cell.border = thin_border
+
+    # Data rows
+    row_font = Font(name="Calibri", size=10)
+    center_align = Alignment(horizontal="center", vertical="center")
+    left_align = Alignment(horizontal="left", vertical="center")
+
+    for row_idx, p in enumerate(queryset, start=2):
+        created_str = p.created_at.strftime('%Y-%m-%d %H:%M') if p.created_at else ''
+        ws.append([
             p.id,
             p.full_name,
             p.phone,
             f"{p.class_number}-sinf",
-            p.created_at.strftime('%Y-%m-%d %H:%M') if p.created_at else ''
+            created_str
         ])
+        ws.row_dimensions[row_idx].height = 20
 
+        # Style cells
+        ws.cell(row=row_idx, column=1).alignment = center_align
+        ws.cell(row=row_idx, column=2).alignment = left_align
+        ws.cell(row=row_idx, column=3).alignment = center_align
+        ws.cell(row=row_idx, column=4).alignment = center_align
+        ws.cell(row=row_idx, column=5).alignment = center_align
+
+        for col_idx in range(1, len(headers) + 1):
+            cell = ws.cell(row=row_idx, column=col_idx)
+            cell.font = row_font
+            cell.border = thin_border
+            if row_idx % 2 == 1:
+                cell.fill = PatternFill(start_color="F8FAFC", end_color="F8FAFC", fill_type="solid")
+
+    # Column widths auto-fit
+    for col in ws.columns:
+        max_len = max(len(str(cell.value or '')) for cell in col)
+        col_letter = get_column_letter(col[0].column)
+        ws.column_dimensions[col_letter].width = max(max_len + 4, 14)
+
+    output = io.BytesIO()
+    wb.save(output)
+    output.seek(0)
+
+    response = HttpResponse(
+        output.getvalue(),
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = 'attachment; filename="qabullar_olimpiada.xlsx"'
     return response
 
 

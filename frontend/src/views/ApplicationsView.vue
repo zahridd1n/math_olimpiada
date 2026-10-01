@@ -30,7 +30,7 @@
           </button>
 
           <button @click="exportToExcel" class="btn-editorial-pill export-btn">
-            <span>📥 Excelga yuklash (.CSV)</span>
+            <span>📥 Excelga yuklash (.XLSX)</span>
           </button>
         </div>
       </div>

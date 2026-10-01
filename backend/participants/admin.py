@@ -9,28 +9,75 @@ from django.utils.html import mark_safe
 from .models import OlympiadEvent, Participant, Certificate, SiteMediaSettings
 
 
-def export_participants_csv(modeladmin, request, queryset):
-    """Export selected participants to CSV."""
-    response = HttpResponse(content_type='text/csv; charset=utf-8')
-    response['Content-Disposition'] = 'attachment; filename="participants.csv"'
-    response.write('\ufeff')  # BOM for Excel UTF-8
-    writer = csv.writer(response)
-    writer.writerow([
-        'ID', 'F.I.Sh.', 'Telefon', 'Tug\'ilgan sana',
-        'Maktab', 'Viloyat', 'Tuman/shahar', 'Sinf',
-        'O\'qituvchi', 'Ro\'yxatdan o\'tgan vaqti'
-    ])
-    for p in queryset.select_related('event'):
-        writer.writerow([
-            p.id, p.full_name, p.phone,
-            p.birth_date.strftime('%Y-%m-%d') if p.birth_date else '',
-            p.school, p.region, p.district,
-            p.class_number, p.teacher_name,
-            p.created_at.strftime('%Y-%m-%d %H:%M') if p.created_at else '',
+import io
+import openpyxl
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.utils import get_column_letter
+
+def export_participants_excel(modeladmin, request, queryset):
+    """Export selected participants to Excel (.xlsx)."""
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "Qatnashchilar"
+
+    header_fill = PatternFill(start_color="1A2035", end_color="1A2035", fill_type="solid")
+    header_font = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
+    header_alignment = Alignment(horizontal="center", vertical="center")
+
+    thin_border = Border(
+        left=Side(style='thin', color='D3D3D3'),
+        right=Side(style='thin', color='D3D3D3'),
+        top=Side(style='thin', color='D3D3D3'),
+        bottom=Side(style='thin', color='D3D3D3')
+    )
+
+    headers = ['ID', 'F.I.SH.', 'Telefon', 'Sinf', 'Ro\'yxatdan o\'tgan vaqti']
+    ws.append(headers)
+    ws.row_dimensions[1].height = 25
+
+    for col_idx in range(1, len(headers) + 1):
+        cell = ws.cell(row=1, column=col_idx)
+        cell.fill = header_fill
+        cell.font = header_font
+        cell.alignment = header_alignment
+        cell.border = thin_border
+
+    row_font = Font(name="Calibri", size=10)
+    for row_idx, p in enumerate(queryset.select_related('event'), start=2):
+        created_str = p.created_at.strftime('%Y-%m-%d %H:%M') if p.created_at else ''
+        ws.append([
+            p.id,
+            p.full_name,
+            p.phone,
+            f"{p.class_number}-sinf",
+            created_str
         ])
+        ws.row_dimensions[row_idx].height = 20
+
+        for col_idx in range(1, len(headers) + 1):
+            cell = ws.cell(row=row_idx, column=col_idx)
+            cell.font = row_font
+            cell.border = thin_border
+            if row_idx % 2 == 1:
+                cell.fill = PatternFill(start_color="F8FAFC", end_color="F8FAFC", fill_type="solid")
+
+    for col in ws.columns:
+        max_len = max(len(str(cell.value or '')) for cell in col)
+        col_letter = get_column_letter(col[0].column)
+        ws.column_dimensions[col_letter].width = max(max_len + 4, 14)
+
+    output = io.BytesIO()
+    wb.save(output)
+    output.seek(0)
+
+    response = HttpResponse(
+        output.getvalue(),
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = 'attachment; filename="qatnashchilar.xlsx"'
     return response
 
-export_participants_csv.short_description = "CSV ga eksport qilish"
+export_participants_excel.short_description = "Excel (.xlsx) ga eksport qilish"
 
 
 @admin.register(OlympiadEvent)
@@ -58,7 +105,7 @@ class ParticipantAdmin(admin.ModelAdmin):
     search_fields = ['full_name', 'phone', 'school', 'teacher_name']
     list_per_page = 50
     date_hierarchy = 'created_at'
-    actions = [export_participants_csv]
+    actions = [export_participants_excel]
     readonly_fields = ['created_at', 'updated_at']
 
     fieldsets = (
