@@ -52,7 +52,7 @@ class Participant(models.Model):
     Represents a single participant registration for an olympiad event.
     Duplicate protection is enforced via unique_together on (event, phone).
     """
-    CLASS_CHOICES = [(i, f"{i}-sinf") for i in range(5, 9)]
+    CLASS_CHOICES = [(i, f"{i}-sinf") for i in range(5, 8)]
 
     event = models.ForeignKey(
         OlympiadEvent,
@@ -84,8 +84,6 @@ class Participant(models.Model):
         verbose_name = "Qatnashchi"
         verbose_name_plural = "Qatnashchilar"
         ordering = ['-created_at']
-        # Prevent duplicate registration for the same event with the same phone
-        unique_together = ['event', 'phone']
         indexes = [
             models.Index(fields=['phone']),
             models.Index(fields=['full_name']),

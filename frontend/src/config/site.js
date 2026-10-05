@@ -28,7 +28,7 @@ export const siteConfig = {
     registrationDeadline: "E’lon qilinadi",
     olympiadDate: "E’lon qilinadi",
     location: "Farg‘ona shahri",
-    participantClasses: "5–8-sinf",
+    participantClasses: "5–7-sinf",
     organizer: "Hackathon IT School",
   },
 

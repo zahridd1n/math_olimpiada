@@ -19,7 +19,7 @@
           <div class="hero-kicker-line">
             <span class="editorial-label">Hackathon IT School Taqdim Etadi</span>
             <span class="editorial-dot">•</span>
-            <span class="editorial-tag">5–8-sinf o'quvchilari uchun</span>
+            <span class="editorial-tag">5–7-sinf o'quvchilari uchun</span>
           </div>
 
           <h1 class="hero-headline">
@@ -28,7 +28,7 @@
 
           <p class="hero-paragraph">
             Farg'ona viloyati bo'yicha yosh matematiklar va bo'lajak IT mutaxassislari uchun 
-            shaffof, nufuzli bellashuv. Quruq formulalar emas — intellektual salohiyat, tahliliy tafakkur va ta'lim grantlari.
+            shaffof, nufuzli bellashuv. Quruq formulalar emas — intellektual salohiyat, tahliliy tafakkur, sovg'alar va imtiyozlar.
           </p>
 
           <!-- Hero Action Buttons -->
@@ -63,8 +63,8 @@
       <!-- Minimalist Editorial Data Row -->
       <div class="editorial-stats-row">
         <div class="stat-cell">
-          <span class="stat-number-mono">500<span class="stat-sup">+</span></span>
-          <span class="stat-caption">Ishtirok etgan o'quvchilar</span>
+          <span class="stat-number-mono">{{ registeredCount }}</span>
+          <span class="stat-caption">Ro'yxatdan o'tgan o'quvchilar</span>
         </div>
         <div class="stat-cell">
           <span class="stat-number-mono">14</span>
@@ -75,8 +75,8 @@
           <span class="stat-caption">Shaffof va xolis hakamlik</span>
         </div>
         <div class="stat-cell">
-          <span class="stat-number-mono text-gold">Grant</span>
-          <span class="stat-caption">G'oliblarga ta'lim imtiyozi</span>
+          <span class="stat-number-mono text-gold">Imtiyoz</span>
+          <span class="stat-caption">G'oliblarga sovg'alar va imtiyozlar</span>
         </div>
       </div>
     </div>
@@ -85,15 +85,22 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getSiteSettings } from '../services/api.js'
+import { getSiteSettings, getEventInfo } from '../services/api.js'
 import defaultHero from '../assets/hero-students.jpg'
 
 const heroImg = ref('')
+const registeredCount = ref(0)
 
 onMounted(async () => {
-  const settings = await getSiteSettings()
+  const [settings, eventInfo] = await Promise.all([
+    getSiteSettings(),
+    getEventInfo()
+  ])
   if (settings && settings.hero_image_url) {
     heroImg.value = settings.hero_image_url
+  }
+  if (eventInfo) {
+    registeredCount.value = eventInfo.total_registered ?? eventInfo.participant_count ?? 0
   }
 })
 </script>

@@ -25,25 +25,14 @@
             <div class="timeline-body">
               <h3 class="timeline-title">Onlayn ro'yxatdan o'tish</h3>
               <p class="timeline-desc">
-                Sayt orqali ism, sinf, maktab va bog'lanish ma'lumotlaringizni to'ldiring hamda o'rningizni band qiling.
+                Sayt orqali ism-sharifingiz, telefon raqamingiz va sinfingizni kiritib o'rningizni band qiling.
               </p>
-              <span class="editorial-tag">[ 2 daqiqa vaqt oladi ]</span>
+              <span class="editorial-tag">[ 1 daqiqa vaqt oladi ]</span>
             </div>
           </div>
 
           <div class="timeline-step">
             <span class="timeline-num">02</span>
-            <div class="timeline-body">
-              <h3 class="timeline-title">Yo'riqnoma va namunaviy masalalar</h3>
-              <p class="timeline-desc">
-                Ro'yxatdan o'tganingizdan so'ng Telegram botimiz orqali olimpiada qoidalari va o'tgan yilgi namunaviy masalalar to'plami yuboriladi.
-              </p>
-              <span class="editorial-tag">[ Bepul materiallar ]</span>
-            </div>
-          </div>
-
-          <div class="timeline-step">
-            <span class="timeline-num">03</span>
             <div class="timeline-body">
               <h3 class="timeline-title">Olimpiada kuni va sinov</h3>
               <p class="timeline-desc">
@@ -54,13 +43,13 @@
           </div>
 
           <div class="timeline-step">
-            <span class="timeline-num">04</span>
+            <span class="timeline-num">03</span>
             <div class="timeline-body">
-              <h3 class="timeline-title">Natijalar va Grantlar topshirish</h3>
+              <h3 class="timeline-title">Natijalar va Taqdirlash</h3>
               <p class="timeline-desc">
-                G'oliblar tantanali ravishda sertifikatlar, qimmatbaho sovg'alar va Hackathon IT School grantlari bilan taqdirlanadi.
+                G'oliblar tantanali ravishda sertifikatlar, qimmatbaho esdalik sovg'alari va maxsus ta'lim imtiyozlari bilan taqdirlanadi.
               </p>
-              <span class="editorial-tag text-gold">[ 100% gacha Grant ]</span>
+              <span class="editorial-tag text-gold">[ Sovg'alar va imtiyozlar ]</span>
             </div>
           </div>
         </div>

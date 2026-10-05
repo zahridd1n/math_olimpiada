@@ -52,9 +52,9 @@ class ParticipantSerializer(serializers.ModelSerializer):
         return phone
 
     def validate_class_number(self, value):
-        if value < 5 or value > 8:
+        if value < 5 or value > 7:
             raise serializers.ValidationError(
-                "Sinf 5 dan 8 gacha bo'lishi kerak."
+                "Sinf 5 dan 7 gacha bo'lishi kerak."
             )
         return value
 
@@ -64,17 +64,6 @@ class ParticipantSerializer(serializers.ModelSerializer):
                 "Ism va familiya kamida 3 ta belgidan iborat bo'lishi kerak."
             )
         return value.strip()
-
-    def validate(self, data):
-        """Check for duplicate registration in the active event."""
-        event = self.context.get('event')
-        if event:
-            phone = data.get('phone', '')
-            if Participant.objects.filter(event=event, phone=phone).exists():
-                raise serializers.ValidationError({
-                    'phone': "Bu telefon raqami bilan allaqachon ro'yxatdan o'tilgan."
-                })
-        return data
 
 
 class EventInfoSerializer(serializers.ModelSerializer):

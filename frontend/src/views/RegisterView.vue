@@ -156,7 +156,7 @@ import { registerParticipant } from "../services/api.js"
 
 const route = useRoute()
 const router = useRouter()
-const classOptions = [5, 6, 7, 8]
+const classOptions = [5, 6, 7]
 
 const form = reactive({
   full_name: "",

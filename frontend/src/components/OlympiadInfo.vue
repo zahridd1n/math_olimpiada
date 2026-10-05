@@ -14,27 +14,8 @@
           </h2>
 
           <p class="spec-lead">
-            Sinovlar 5–8-sinf o'quvchilari uchun 2 ta asosiy yosh toifasida alohida tuzilgan murakkablik darajasi asosida o'tkaziladi. Har bir bosqich mantiq, algoritmik fikrlash va noan'anaviy yondashuvni baholaydi.
+            Sinovlar 5–7-sinf o'quvchilari uchun maxsus tuzilgan murakkablik darajasi asosida o'tkaziladi. Har bir bosqich mantiq, algoritmik fikrlash va noan'anaviy yondashuvni baholaydi.
           </p>
-
-          <!-- Category Division -->
-          <div class="grade-categories">
-            <div class="grade-row">
-              <span class="grade-level">5–6 SINF</span>
-              <div class="grade-detail">
-                <h4>Mantiq va boshlang'ich kombinatorika</h4>
-                <p>Mantiqiy jumboqlar, sonlar qonuniyati, fazoviy tasavvur va nostandart masalalar.</p>
-              </div>
-            </div>
-
-            <div class="grade-row">
-              <span class="grade-level">7–8 SINF</span>
-              <div class="grade-detail">
-                <h4>Algebraik tahlil va geometrik tafakkur</h4>
-                <p>Tenglamalar tizimi, geometrik isbotlar, mantiqiy algoritmlar va musobaqa masalalari.</p>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- Right Side: Official Editorial Specs Registry -->

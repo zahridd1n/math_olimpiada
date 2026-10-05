@@ -10,7 +10,7 @@
           Kelajak kasblariga eltuvchi <span class="serif-italic-gold">ta'lim</span> <span class="serif-italic">yo'nalishlari</span>
         </h2>
         <p class="dir-sub">
-          Olimpiadada ishtirok etgan iqtidorli o'quvchilar maktabimizda quyidagi yo'nalishlar bo'yicha grant asosida yoki maxsus guruhlarda ta'lim olishlari mumkin.
+          Olimpiadada ishtirok etgan iqtidorli o'quvchilar maktabimizda quyidagi yo'nalishlar bo'yicha maxsus imtiyozlar asosida ta'lim olishlari mumkin.
         </p>
       </div>
 

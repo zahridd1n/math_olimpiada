@@ -76,16 +76,6 @@
           <div class="stat-number font-mono">{{ stats.class_7 || 0 }}</div>
           <div class="stat-label">Ishtirokchilar</div>
         </div>
-
-        <div 
-          class="stat-card" 
-          :class="{ active: selectedClass === '8' }"
-          @click="setClassFilter('8')"
-        >
-          <div class="stat-meta">8-SINF</div>
-          <div class="stat-number font-mono">{{ stats.class_8 || 0 }}</div>
-          <div class="stat-label">Ishtirokchilar</div>
-        </div>
       </div>
 
       <!-- Controls Row (Search & Filter) -->
@@ -113,7 +103,7 @@
             Barchasi ({{ stats.total || 0 }})
           </button>
           <button
-            v-for="c in [5, 6, 7, 8]"
+            v-for="c in [5, 6, 7]"
             :key="c"
             class="chip-btn font-mono"
             :class="{ active: selectedClass === String(c) }"
@@ -219,7 +209,6 @@ const stats = reactive({
   class_5: 0,
   class_6: 0,
   class_7: 0,
-  class_8: 0,
 })
 
 const loading = ref(true)
@@ -414,7 +403,7 @@ async function executeDelete() {
 /* Stats Cards */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin-bottom: 28px;
 }

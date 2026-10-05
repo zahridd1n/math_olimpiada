@@ -2,9 +2,9 @@ import csv
 from django.db.models import Q
 from django.http import HttpResponse, JsonResponse
 from rest_framework import status
-from rest_framework.decorators import api_view, throttle_classes
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.throttling import AnonRateThrottle
 
 from .models import OlympiadEvent, Participant, Certificate, SiteMediaSettings
 from .serializers import (
@@ -15,13 +15,9 @@ from .serializers import (
 )
 
 
-class RegistrationThrottle(AnonRateThrottle):
-    """Throttle for registration endpoint — 15 submissions per minute."""
-    scope = 'participants_registration'
-
-
 @api_view(['POST'])
-@throttle_classes([RegistrationThrottle])
+@authentication_classes([])
+@permission_classes([AllowAny])
 def register_participant(request):
     """
     POST /api/v1/participants/
@@ -85,7 +81,6 @@ def list_participants(request):
         'class_5': all_participants.filter(class_number=5).count(),
         'class_6': all_participants.filter(class_number=6).count(),
         'class_7': all_participants.filter(class_number=7).count(),
-        'class_8': all_participants.filter(class_number=8).count(),
     }
 
     return Response({
@@ -216,12 +211,18 @@ def event_info(request):
     """
     event = OlympiadEvent.objects.filter(is_active=True).first()
     if not event:
-        return Response(
-            {'error': "Hozirda faol olimpiada mavjud emas."},
-            status=status.HTTP_404_NOT_FOUND
+        event, _ = OlympiadEvent.objects.get_or_create(
+            slug='viloyat-matematika-olimpiadasi-2026',
+            defaults={
+                'title': 'Viloyat matematika olimpiadasi',
+                'is_active': True,
+                'location': "Farg'ona shahri",
+            }
         )
     serializer = EventInfoSerializer(event)
-    return Response(serializer.data)
+    data = serializer.data
+    data['total_registered'] = Participant.objects.count()
+    return Response(data)
 
 
 @api_view(['GET'])

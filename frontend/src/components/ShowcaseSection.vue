@@ -4,14 +4,14 @@
       <!-- Section Header -->
       <div class="gallery-header">
         <div class="header-kicker">
-          <span class="editorial-label">Rasmiy Namunalar</span>
-          <span class="editorial-tag">[ 01 ]</span>
+          <span class="editorial-label">Yutuqlar & Natijalar</span>
+          <span class="editorial-tag">[ Galereya ]</span>
         </div>
         <h2 class="gallery-title">
-          Sertifikatlar & <span class="serif-italic-gold">Diplomlar</span> <span class="serif-italic">galereyasi</span>
+          O'quvchilarimiz <span class="serif-italic-gold">yutuqlari</span> va <span class="serif-italic">sertifikatlari</span>
         </h2>
         <p class="gallery-sub">
-          Olimpiada ishtirokchilari va g'oliblariga topshiriladigan rasmiy diplom, sertifikat va esdalik sovg'alari namunalari.
+          O'quvchilarimiz erishgan muvaffaqiyatlar, sertifikatlar va diplomlar galereyasi.
         </p>
       </div>
 

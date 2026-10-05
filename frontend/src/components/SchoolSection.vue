@@ -30,8 +30,8 @@
             <div class="pillar-item">
               <div class="pillar-marker">02</div>
               <div class="pillar-info">
-                <h4>Grantlar va doimiy qo'llab-quvvatlash</h4>
-                <p>Eng iqtidorli o'quvchilarga bepul ta'lim olish va nufuzli startap loyihalarda qatnashish imkoni.</p>
+                <h4>Sovg'alar, imtiyozlar va qo'llab-quvvatlash</h4>
+                <p>Eng iqtidorli o'quvchilarga maxsus imtiyozlar va nufuzli loyihalarda qatnashish imkoni.</p>
               </div>
             </div>
 
