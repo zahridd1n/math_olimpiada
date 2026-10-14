@@ -8,7 +8,144 @@
       </svg>
     </div>
 
-    <div class="container register-container">
+    <!-- 1. RO'YXATDAN O'TISH YAKUNLANGAN HOLAT (REGISTRATION CLOSED) -->
+    <div v-if="isClosed" class="container register-container closed-container">
+      <div class="editorial-card-wrapper closed-card-wrapper">
+        <router-link to="/" class="back-link">
+          <span class="arrow">←</span> Bosh sahifaga qaytish
+        </router-link>
+
+        <!-- Header Status Emblem -->
+        <div class="closed-header">
+          <div class="closed-emblem-wrap">
+            <div class="closed-pulse-ring"></div>
+            <div class="closed-emblem-circle">
+              <svg viewBox="0 0 24 24" class="closed-svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+                <path d="m9 16 2 2 4-4"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="closed-status-pill">
+            <span class="pulse-amber-dot"></span>
+            <span>QABUL RASMAN YAKUNLANDI</span>
+          </div>
+
+          <h1 class="closed-title">
+            Olimpiadaga ro'yxatdan o'tish <span class="serif-italic-gold">yakunlandi</span>
+          </h1>
+
+          <p class="closed-lead">
+            Hurmatli o'quvchilar, ota-onalar va ustozlar! Viloyat matematika olimpiadasida ishtirok etish uchun arizalarni qabul qilish muddati o'z nihoyasiga yetdi. Barcha ro'yxatdan o'tgan nomzodlarga katta qiziqish va faollik uchun samimiy minnatdorchilik bildiramiz!
+          </p>
+        </div>
+
+        <!-- Informative 4-card grid -->
+        <div class="closed-info-grid">
+          <div class="closed-info-card">
+            <div class="info-card-icon-wrap">
+              <svg viewBox="0 0 24 24" class="info-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <div class="info-card-body">
+              <h2 class="info-card-title">Arizalar ko'rib chiqilmoqda</h2>
+              <p class="info-card-desc">Barcha qabul qilingan arizalar saralandi va ishtirokchilarning yakuniy ro'yxati shakllantirildi.</p>
+            </div>
+          </div>
+
+          <div class="closed-info-card">
+            <div class="info-card-icon-wrap">
+              <svg viewBox="0 0 24 24" class="info-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="info-card-body">
+              <h2 class="info-card-title">Olimpiada kuni va vaqti</h2>
+              <p class="info-card-desc">Imtihon o'tkaziladigan aniq sana, sinflar kesimidagi vaqtlar rasmiy kanalimiz orqali e'lon qilinadi.</p>
+            </div>
+          </div>
+
+          <div class="closed-info-card">
+            <div class="info-card-icon-wrap">
+              <svg viewBox="0 0 24 24" class="info-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div class="info-card-body">
+              <h2 class="info-card-title">O'tkazilish manzili</h2>
+              <p class="info-card-desc">Farg'ona shahri, Hackathon IT School binosi. Barcha qatnashuvchilar uchun qulay sharoitlar yaratilgan.</p>
+            </div>
+          </div>
+
+          <div class="closed-info-card">
+            <div class="info-card-icon-wrap">
+              <svg viewBox="0 0 24 24" class="info-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </div>
+            <div class="info-card-body">
+              <h2 class="info-card-title">SMS va shaxsiy aloqa</h2>
+              <p class="info-card-desc">Ro'yxatdan o'tgan har bir ishtirokchining telefon raqamiga sms yoki qo'ng'iroq orqali tasdiq yuboriladi.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Official Telegram Channel Card -->
+        <div class="telegram-callout-card">
+          <div class="callout-inner">
+            <div class="callout-tg-badge">
+              <svg viewBox="0 0 24 24" class="tg-svg-icon" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.52 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/>
+              </svg>
+            </div>
+            <div class="callout-text">
+              <div class="callout-tag">[ TEZKOR YANGILIKLAR ]</div>
+              <h3 class="callout-title">Rasmiy Telegram kanalimizni kuzatib boring</h3>
+              <p class="callout-desc">Imtihon jadvallari, o'quvchilar ro'yxati va olimpiada natijalari eng birinchi bo'lib rasmiy kanalimizda e'lon qilinadi.</p>
+            </div>
+            <a :href="siteConfig.social.telegram" target="_blank" rel="noopener noreferrer" class="btn-editorial-pill tg-join-btn">
+              <span>Kanalga o'tish</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Actions & Contact row -->
+        <div class="closed-actions-row">
+          <router-link to="/" class="btn-editorial-pill return-btn">
+            <span>← Bosh sahifaga qaytish</span>
+          </router-link>
+
+          <a :href="siteConfig.contact.phoneLink" class="btn-contact-outline">
+            <svg viewBox="0 0 24 24" class="phone-svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>Aloqa: +998 (50) 045-60-10</span>
+          </a>
+        </div>
+
+        <!-- Organizer signature -->
+        <div class="closed-signature">
+          <span>{{ siteConfig.schoolName }}</span>
+          <span class="sig-dot">•</span>
+          <span>Viloyat matematika olimpiadasi tashkiliy qo'mitasi</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. RO'YXATDAN O'TISH FORMASI (FAOL BO'LGANDA) -->
+    <div v-else class="container register-container">
       <div class="editorial-card-wrapper">
         <router-link to="/" class="back-link">
           <span class="arrow">←</span> Bosh sahifaga qaytish
@@ -153,10 +290,14 @@ import { ref, reactive, computed, onMounted, onUnmounted } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import confetti from "canvas-confetti"
 import { registerParticipant } from "../services/api.js"
+import { siteConfig } from "../config/site.js"
 
 const route = useRoute()
 const router = useRouter()
 const classOptions = [5, 6, 7]
+
+// Default to closed as requested by the user
+const isClosed = ref(true)
 
 const form = reactive({
   full_name: "",
@@ -173,6 +314,15 @@ const countdown = ref(4)
 let timerId = null
 
 onMounted(() => {
+  // Admin preview uchun ?open=1 orqali formani ko'rish mumkin
+  if (route.query.force === "open" || route.query.open === "1") {
+    isClosed.value = false
+    document.title = "Olimpiadaga ro'yxatdan o'tish — " + siteConfig.schoolName
+  } else {
+    isClosed.value = true
+    document.title = "Ro'yxatdan o'tish yakunlandi — " + siteConfig.olympiadTitle
+  }
+
   if (route.query.phone) {
     form.phone = route.query.phone
     formatPhone()
@@ -229,7 +379,6 @@ function validateAll() {
 
 function launchCelebration() {
   try {
-    // Left burst
     confetti({
       particleCount: 80,
       angle: 60,
@@ -237,7 +386,6 @@ function launchCelebration() {
       origin: { x: 0.1, y: 0.7 },
       colors: ['#e5b22e', '#f3cf7a', '#10b981', '#3b82f6', '#ffffff']
     })
-    // Right burst
     confetti({
       particleCount: 80,
       angle: 120,
@@ -245,7 +393,6 @@ function launchCelebration() {
       origin: { x: 0.9, y: 0.7 },
       colors: ['#e5b22e', '#f3cf7a', '#10b981', '#3b82f6', '#ffffff']
     })
-    // Center star burst
     setTimeout(() => {
       confetti({
         particleCount: 60,
@@ -282,10 +429,8 @@ async function handleSubmit() {
     participantId.value = result.id
     success.value = true
 
-    // Launch celebration confetti
     launchCelebration()
 
-    // Countdown and redirect
     countdown.value = 4
     timerId = setInterval(() => {
       countdown.value--
@@ -326,15 +471,26 @@ async function handleSubmit() {
   z-index: 2;
 }
 
+.closed-container {
+  max-width: 740px;
+}
+
 .editorial-card-wrapper {
   background: rgba(255, 255, 255, 0.025);
   border: 1px solid var(--border-medium);
-  border-radius: 18px;
+  border-radius: 20px;
   padding: 44px;
   width: 100%;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.closed-card-wrapper {
+  padding: 48px 44px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.015) 100%);
+  border: 1px solid rgba(229, 178, 46, 0.2);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 50px rgba(229, 178, 46, 0.04);
 }
 
 .back-link {
@@ -344,13 +500,326 @@ async function handleSubmit() {
   font-size: 0.85rem;
   color: var(--text-secondary);
   margin-bottom: 24px;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .back-link:hover {
   color: var(--gold);
+  transform: translateX(-3px);
 }
 
+/* =========================================
+   CLOSED STATE STYLES
+   ========================================= */
+.closed-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.closed-emblem-wrap {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closed-pulse-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(229, 178, 46, 0.4);
+  animation: pulseEffect 2.4s ease-out infinite;
+}
+
+.closed-emblem-circle {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(229, 178, 46, 0.2), rgba(217, 158, 43, 0.08));
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(229, 178, 46, 0.25);
+}
+
+.closed-svg {
+  width: 32px;
+  height: 32px;
+}
+
+.closed-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(229, 178, 46, 0.1);
+  border: 1px solid rgba(229, 178, 46, 0.3);
+  border-radius: 99px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.pulse-amber-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+  display: inline-block;
+  animation: dotBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes dotBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.closed-title {
+  font-size: clamp(1.85rem, 3.8vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.closed-lead {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Informative 4-card grid */
+.closed-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.closed-info-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  transition: all 0.25s ease;
+}
+
+.closed-info-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(229, 178, 46, 0.3);
+  transform: translateY(-2px);
+}
+
+.info-card-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(229, 178, 46, 0.08);
+  border: 1px solid rgba(229, 178, 46, 0.2);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.info-card-body {
+  flex: 1;
+}
+
+.info-card-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.info-card-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* Telegram Callout Card */
+.telegram-callout-card {
+  background: linear-gradient(135deg, rgba(36, 161, 222, 0.12) 0%, rgba(20, 24, 40, 0.7) 100%);
+  border: 1px solid rgba(36, 161, 222, 0.3);
+  border-radius: 16px;
+  padding: 22px 24px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.telegram-callout-card::after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(36, 161, 222, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.callout-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.callout-tg-badge {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #24A1DE;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(36, 161, 222, 0.35);
+}
+
+.tg-svg-icon {
+  width: 26px;
+  height: 26px;
+}
+
+.callout-text {
+  flex: 1;
+}
+
+.callout-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #53c5f8;
+  margin-bottom: 4px;
+}
+
+.callout-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.callout-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.tg-join-btn {
+  flex-shrink: 0;
+  background: #24A1DE !important;
+  color: #ffffff !important;
+  border-color: #24A1DE !important;
+  padding: 10px 18px !important;
+  font-size: 0.85rem !important;
+  box-shadow: 0 4px 14px rgba(36, 161, 222, 0.3) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tg-join-btn:hover {
+  background: #1e8ec5 !important;
+  border-color: #1e8ec5 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(36, 161, 222, 0.45) !important;
+}
+
+/* Actions and contact row */
+.closed-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.return-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 0.92rem;
+}
+
+.btn-contact-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 99px;
+  border: 1px solid var(--border-medium);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-main);
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-contact-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(229, 178, 46, 0.08);
+}
+
+.phone-svg {
+  width: 16px;
+  height: 16px;
+  color: var(--gold);
+}
+
+.closed-signature {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.sig-dot {
+  color: var(--gold);
+}
+
+/* =========================================
+   FORM STYLES (OPEN STATE)
+   ========================================= */
 .form-header {
   margin-bottom: 32px;
 }
@@ -450,52 +919,57 @@ async function handleSubmit() {
 }
 
 .form-select option {
-  background: #0d0a1c;
+  background-color: var(--bg-section-1);
   color: #ffffff;
+}
+
+.field-error {
+  font-size: 0.78rem;
+  color: #f87171;
+  font-family: var(--font-mono);
 }
 
 .form-group.error .form-input {
   border-color: #ef4444;
-}
-
-.field-error {
-  font-size: 0.75rem;
-  color: #f87171;
-  font-family: var(--font-sans);
+  background: rgba(239, 68, 68, 0.05);
 }
 
 .submit-action {
   width: 100%;
-  justify-content: center;
   height: 52px;
   font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   margin-top: 10px;
 }
 
 .spinner {
   width: 18px;
   height: 18px;
-  border: 2px solid rgba(7, 9, 19, 0.3);
-  border-top-color: #070913;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-top-color: #000000;
   border-radius: 50%;
-  animation: spin 0.6s linear infinite;
+  animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
-/* Success Modal Notification */
+/* Modal styles */
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(3, 4, 10, 0.85);
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.82);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
   padding: 20px;
 }
 
@@ -667,13 +1141,35 @@ async function handleSubmit() {
   opacity: 0;
 }
 
-@media (max-width: 640px) {
-  .editorial-card-wrapper {
+@media (max-width: 680px) {
+  .editorial-card-wrapper,
+  .closed-card-wrapper {
     padding: 28px 18px;
   }
   .form-row {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+  .closed-info-grid {
+    grid-template-columns: 1fr;
+  }
+  .callout-inner {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  .tg-join-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .closed-actions-row {
+    flex-direction: column;
+    width: 100%;
+  }
+  .return-btn,
+  .btn-contact-outline {
+    width: 100%;
+    justify-content: center;
   }
   .success-modal-card {
     padding: 32px 20px;
